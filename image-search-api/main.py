@@ -1,13 +1,12 @@
-from fastapi import FastAPI
 import uvicorn
-from app.config import get_settings
-from app.image_search import router as image_search_router
+from app import setup
+from app.config import Settings
+from pathlib import Path
 
-app = FastAPI()
-app.include_router(image_search_router)
+settings = Settings.from_yaml(Path(__file__).resolve().parent / "config" / "config.yml")
 
+app = setup.setup(settings)
 if __name__ == "__main__":
-    settings = get_settings()
     uvicorn.run(
         "main:app",
         host=settings.server.host,
