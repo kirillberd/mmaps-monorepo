@@ -9,7 +9,7 @@ preprocess:
   std: [0.229, 0.224, 0.225]
 
 triton:
-  url: "localhost:8000"
+  url: "0.0.0.0:8010"
   model_name: "efficientnet"
   input_name: "images"
   output_name: "embeddings"
@@ -19,7 +19,7 @@ triton:
 opensearch:
   host: "localhost"
   port: 9200
-  index: "images"
+  index: "image-embeddings"
   # Secrets should come from env vars. Example:
   #   export OPENSEARCH_PASSWORD='...'
   username: "admin"

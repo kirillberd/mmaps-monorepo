@@ -50,5 +50,4 @@ class Container(containers.DeclarativeContainer):
         preprocessor=preprocessor,
         embedder=embedder,
         repository=opensearch_repository,
-        l2_normalize_embeddings=config.search.l2_normalize,
     )
