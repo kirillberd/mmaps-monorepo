@@ -2,3 +2,38 @@ server:
   port: 8000
   reload: True
   host: "0.0.0.0"
+
+preprocess:
+  image_size: 224
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+
+triton:
+  url: "localhost:8000"
+  model_name: "efficientnet"
+  input_name: "images"
+  output_name: "embeddings"
+  timeout_s: 10
+  ssl: False
+
+opensearch:
+  host: "localhost"
+  port: 9200
+  index: "images"
+  # Secrets should come from env vars. Example:
+  #   export OPENSEARCH_PASSWORD='...'
+  username: "admin"
+  password: "${OPENSEARCH_PASSWORD}"
+  use_ssl: False
+  verify_certs: False
+  http_compress: True
+  timeout_s: 600
+  request_timeout_s: 60
+  ef_search: 128
+  # Return only needed fields (faster + меньше трафика)
+  source_includes: ["id", "uid", "url"]
+
+search:
+  default_k: 10
+  max_k: 100
+  l2_normalize: True
