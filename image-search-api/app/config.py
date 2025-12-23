@@ -31,7 +31,7 @@ class TritonConfig(BaseModel):
     # Triton Inference Server URL, e.g. "localhost:8000" for HTTP.
     url: str
     model_name: str = "efficientnet"
-    model_version: str | None = None
+    model_version: str | None = "1"
     input_name: str = "images"
     output_name: str = "embeddings"
     timeout_s: float = 10.0

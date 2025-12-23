@@ -47,7 +47,9 @@ class TritonEmbedder:
         self.timeout_s = float(timeout_s)
         self.ssl = bool(ssl)
 
-        self._client = triton_http.InferenceServerClient(url=self.url, ssl=self.ssl, verbose=False)
+        self._client = triton_http.InferenceServerClient(
+            url=self.url, ssl=self.ssl, verbose=False
+        )
 
     def embed(self, images: np.ndarray) -> np.ndarray:
         """Returns embeddings with shape [1, 1280]."""
@@ -67,7 +69,6 @@ class TritonEmbedder:
                 model_version=self.model_version,
                 inputs=[inp],
                 outputs=[out],
-                client_timeout=self.timeout_s,
             )
         except Exception as e:  # noqa: BLE001
             raise TritonInferenceError(f"Triton inference failed: {e}") from e
