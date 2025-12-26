@@ -26,7 +26,7 @@
     results = []
 
     if (!file) {
-      error = 'Выбери картинку.'
+      error = 'Выберите картинку.'
       return
     }
 
@@ -70,7 +70,7 @@
   <header class="mb-6">
     <h1 class="text-xl font-semibold tracking-tight">Image search</h1>
     <p class="mt-1 text-sm text-slate-600">
-      Загрузи картинку, получи список совпадений и отрисуй их по URL.
+      Загрузка картинки, получение списка совпадений и отрисовка их по URL.
     </p>
   </header>
 
